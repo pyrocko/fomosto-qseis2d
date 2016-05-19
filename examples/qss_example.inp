@@ -1,0 +1,186 @@
+# This is the input file of FORTRAN77 program "QseisS" for calculation of
+# f-k spectra of upgoing seismic waves at the reveiver-site basement.
+#
+# by
+# Rongjiang  Wang <wang@gfz-potsdam.de>
+# GeoForschungsZentrum Potsdam
+# Telegrafenberg, D-14473 Potsdam, Germany
+#
+# Modified from qseis2006, Potsdam, Dec. 2014
+#
+#	SOURCE DEPTH
+#	============
+# 1. source depth [km]
+#------------------------------------------------------------------------------
+ 10.0                   |dble
+#------------------------------------------------------------------------------
+#
+#	RECEIVER-SITE PARAMETERS
+#	========================
+# 1. receiver-site basement depth [km]
+# 2. max. epicental distance [km]
+#------------------------------------------------------------------------------
+ 35.0                   |dble
+ 10000.0                |dble
+#------------------------------------------------------------------------------
+#	TIME SAMPLING PARAMETERS
+#	========================
+# 1. length of time window [sec]
+# 2. number of time samples (<= 2*nfmax in qsglobal.h)
+#------------------------------------------------------------------------------
+ 102.3                  |dble
+ 1024                   |int
+#------------------------------------------------------------------------------
+#	SLOWNESS WINDOW PARAMETERS
+#	==========================
+# 1. the low and high slowness cut-offs [s/km] with tapering: 0 < slw1 < slw2
+#    defining the bounds of cosine taper at the lower end, and 0 < slw3 < slw4
+#    defining the bounds of cosine taper at the higher end.
+# 2. slowness sampling rate (1.0 = sampling with the Nyquist slowness, 2.0 =
+#    sampling with twice higher than the Nyquist slowness, and so on: the
+#    larger this parameter, the smaller the space-domain aliasing effect, but
+#    also the more computation effort); 
+# 3. the factor for suppressing time domain aliasing (> 0 and <= 1).
+#------------------------------------------------------------------------------
+ 0.000  0.000  0.20  0.250           |dble, dble, dble, dble
+ 4.00                                |dble
+ 0.01                                |dble
+#------------------------------------------------------------------------------
+#	OPTIONS FOR PARTIAL SOLUTIONS
+#	=============================
+# 1. switch for filtering waves with a shallow penetration depth (concerning
+#    their whole trace from source to receiver), penetration depth limit [km]
+#    (Note: if this option is selected, waves whose travel path never exceeds
+#    the given depth limit will be filtered ("seismic nuting"). the condition
+#    for selecting this filter is that the given shallow path depth limit
+#    should be larger than both source and receiver depth.)
+# 2. number of depth ranges where the following selected up/down-sp2oing P or
+#    SV waves should be filtered
+# 3. the 1. depth range: upper and lower depth [km], switch for filtering P
+#    or SV wave in this depth range:
+#    switch no:              1      2        3       4         other
+#    filtered phase:         P(up)  P(down)  SV(up)  SV(down)  Error
+# 4. the 2. ...
+#    (Note: the partial solution options are useful tools to increase the
+#    numerical resolution of desired wave phases. especially when the desired
+#    phases are much smaller than the undesired phases, these options should
+#    be selected and carefully combined.)
+#------------------------------------------------------------------------------
+ 0  560.0                     |int, dble
+ 0                            |int
+# 2                           |int
+# 0.0 5153.0  3               |dble, dble, int
+# 0.0 5153.0  4               |dble, dble, int
+#------------------------------------------------------------------------------
+#	OUTPUT FILE FOR F-K SPECTRA of GREEN'S FUNCTIONS
+#	================================================
+# 1. info-file of Green's functions (ascii including f-k sampling parameters)
+# 2. file name of Green's functions (binary files including explosion, strike
+#    -slip, dip-slip and clvd sources)
+#------------------------------------------------------------------------------
+   'green.info'
+   'green.fk'
+#------------------------------------------------------------------------------
+#	GLOBAL MODEL PARAMETERS
+#	=======================
+# 1. switch for flat-earth-transform
+# 2. gradient resolution [%] of vp, vs, and rho (density), if <= 0, then default
+#    values (depending on wave length at cut-off frequency) will be used
+#------------------------------------------------------------------------------
+ 1                               |int
+ 0.25  0.25  5.0                 |dble, dble, dble
+#------------------------------------------------------------------------------
+#	SOURCE-SITE LAYERED EARTH MODEL
+#	===============================
+# 1. number of data lines of the layered model
+#------------------------------------------------------------------------------
+ 68                              |int
+#------------------------------------------------------------------------------
+# no  depth[km]  vp[km/s]  vs[km/s] rho[g/cm^3] qp      qs
+#------------------------------------------------------------------------------
+  1     0.000    5.8000    3.3600    2.7200  1340.0  600.0
+  2    20.000    5.8000    3.3600    2.7200  1340.0  600.0
+  3    20.000    6.5000    3.7500    2.9200  1340.0  600.0
+  4    35.000    6.5000    3.7500    2.9200  1340.0  600.0
+  5    35.000    8.0400    4.4700    3.3200  1340.0  600.0
+  6    77.500    8.0450    4.4850    3.3455  1340.0  600.0
+  7   120.000    8.0500    4.5000    3.3713  1340.0  600.0
+  8   165.000    8.1750    4.5090    3.3985   250.0  100.0
+  9   210.000    8.3000    4.5180    3.4258   250.0  100.0
+ 10   210.000    8.3000    4.5220    3.4258   360.0  150.0
+ 11   260.000    8.4825    4.6090    3.4561   360.0  150.0
+ 12   310.000    8.6650    4.6960    3.4864   360.0  150.0
+ 13   360.000    8.8475    4.7830    3.5167   360.0  150.0
+ 14   410.000    9.0300    4.8700    3.5470   360.0  150.0
+ 15   410.000    9.3600    5.0700    3.7557   360.0  150.0
+ 16   460.000    9.5280    5.1760    3.8175   360.0  150.0
+ 17   510.000    9.6960    5.2820    3.8793   360.0  150.0
+ 18   560.000    9.8640    5.3880    3.9410   360.0  150.0
+ 19   610.000   10.0320    5.4940    4.0028   360.0  150.0
+ 20   660.000   10.2000    5.6000    4.0646   360.0  150.0
+ 21   660.000   10.7900    5.9500    4.3714   780.0  300.0
+ 22   710.000   10.9229    6.0797    4.4010   780.0  300.0
+ 23   760.000   11.0558    6.2095    4.4305   780.0  300.0
+ 24   809.500   11.1440    6.2474    4.4596   780.0  300.0
+ 25   859.000   11.2300    6.2841    4.4885   780.0  300.0
+ 26   908.500   11.3140    6.3199    4.5173   780.0  300.0
+ 27   958.000   11.3960    6.3546    4.5459   780.0  300.0
+ 28  1007.500   11.4761    6.3883    4.5744   780.0  300.0
+ 29  1057.000   11.5543    6.4211    4.6028   780.0  300.0
+ 30  1106.500   11.6308    6.4530    4.6310   780.0  300.0
+ 31  1156.000   11.7056    6.4841    4.6591   780.0  300.0
+ 32  1205.500   11.7787    6.5143    4.6870   780.0  300.0
+ 33  1255.000   11.8504    6.5438    4.7148   780.0  300.0
+ 34  1304.500   11.9205    6.5725    4.7424   780.0  300.0
+ 35  1354.000   11.9893    6.6006    4.7699   780.0  300.0
+ 36  1403.500   12.0568    6.6280    4.7973   780.0  300.0
+ 37  1453.000   12.1231    6.6547    4.8245   780.0  300.0
+ 38  1502.500   12.1881    6.6809    4.8515   780.0  300.0
+ 39  1552.000   12.2521    6.7066    4.8785   780.0  300.0
+ 40  1601.500   12.3151    6.7317    4.9052   780.0  300.0
+ 41  1651.000   12.3772    6.7564    4.9319   780.0  300.0
+ 42  1700.500   12.4383    6.7807    4.9584   780.0  300.0
+ 43  1750.000   12.4987    6.8046    4.9847   780.0  300.0
+ 44  1799.500   12.5584    6.8282    5.0109   780.0  300.0
+ 45  1849.000   12.6174    6.8514    5.0370   780.0  300.0
+ 46  1898.500   12.6759    6.8745    5.0629   780.0  300.0
+ 47  1948.000   12.7339    6.8972    5.0887   780.0  300.0
+ 48  1997.500   12.7915    6.9199    5.1143   780.0  300.0
+ 49  2047.000   12.8487    6.9423    5.1398   780.0  300.0
+ 50  2096.500   12.9057    6.9647    5.1652   780.0  300.0
+ 51  2146.000   12.9625    6.9870    5.1904   780.0  300.0
+ 52  2195.500   13.0192    7.0093    5.2154   780.0  300.0
+ 53  2245.000   13.0758    7.0316    5.2403   780.0  300.0
+ 54  2294.500   13.1325    7.0540    5.2651   780.0  300.0
+ 55  2344.000   13.1892    7.0765    5.2898   780.0  300.0
+ 56  2393.500   13.2462    7.0991    5.3142   780.0  300.0
+ 57  2443.000   13.3034    7.1218    5.3386   780.0  300.0
+ 58  2492.500   13.3610    7.1449    5.3628   780.0  300.0
+ 59  2542.000   13.4190    7.1681    5.3869   780.0  300.0
+ 60  2591.500   13.4774    7.1917    5.4108   780.0  300.0
+ 61  2641.000   13.5364    7.2156    5.4345   780.0  300.0
+ 62  2690.500   13.5961    7.2398    5.4582   780.0  300.0
+ 63  2740.000   13.6564    7.2645    5.4817   780.0  300.0
+ 64  2740.000   13.6564    7.2645    5.4817   780.0  300.0
+ 65  2789.670   13.6679    7.2768    5.5051   780.0  300.0
+ 66  2839.330   13.6793    7.2892    5.5284   780.0  300.0
+ 67  2889.000   13.6908    7.3015    5.5515   780.0  300.0
+ 68  2889.000    8.0088    0.0000    9.9145 57822.0    0.0
+#-----------------------END OF INPUT PARAMETERS--------------------------------
+
+Glossary
+
+SLOWNESS: The slowness is the inverse of apparent wave velocity = sin(i)/v with
+i = incident angle and v = true wave velocity.
+
+SUPPRESSION OF TIME-DOMAIN ALIASING: The suppression of the time domain aliasing
+is achieved by using the complex frequency technique. The suppression factor
+should be a value between 0 and 1. If this factor is set to 0.1, for example, the
+aliasing phase at the reduced time begin is suppressed to 10%.
+
+MODEL PARAMETER GRADIENT RESOLUTION: Layers with a constant gradient will be
+discretized with a number of homogeneous sublayers. The gradient resolutions are
+then used to determine the maximum allowed thickness of the sublayers. If the
+resolutions of Vp, Vs and Rho (density) require different thicknesses, the smallest
+is first chosen. If this is even smaller than 1% of the characteristic wavelength,
+then the latter is taken finally for the sublayer thickness.

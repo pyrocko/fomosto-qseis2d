@@ -1,0 +1,80 @@
+# This is the input file of FORTRAN77 program "QseisR" for calculation of
+# synthetic seismograms using the given f-k spectra of incident seismic
+# waves at the receiver-site basement, where the f-k spectra should be
+# prepared by the "QseisS" code.
+#
+# by
+# Rongjiang  Wang <wang@gfz-potsdam.de>
+# GeoForschungsZentrum Potsdam
+# Telegrafenberg, D-14473 Potsdam, Germany
+#
+# Modified from qseis2006, Potsdam, Dec. 2014
+#
+#------------------------------------------------------------------------------
+#	SOURCE PARAMETERS
+#	=================
+# 1. epicenter (lat[deg], lon[deg])
+# 2. moment tensor in N*m: Mxx, Myy, Mzz, Mxy, Myz, Mzx
+#    Note: x is northward, y is eastward and z is downard
+#          conversion from CMT system:
+#          Mxx = Mtt, Myy= Mpp, Mzz = Mrr, Mxy = -Mtp, Myz = -Mrp, Mzx = Mrt
+# 3. file of f-k spectra of incident waves
+# 4. source duration [s], and selection of source time functions, i.e.,
+#    source wavelet (0 = user's own wavelet; 1 = default wavelet: normalized
+#    square half-sinusoid)
+# 5. if user's own wavelet is selected, then number of the wavelet time samples
+#    (<= 1024), followed by
+# 6. the equidistant wavelet time series (no comment lines between the time
+#    series)
+#------------------------------------------------------------------------------
+  0.0    0.0                                                  |dble(2)
+ -0.36E+19 -5.12E+19  5.48E+19 -6.21E+19  2.40E+19 -3.84E+19  |dble(6)
+  '..\qsstest\green.fk'                                       |char
+  1.0   1                                                     |dble, int
+# 100                                                         |int
+#  0.000  0.063  0.127  0.189  0.251  0.312  0.372  0.430  0.486  0.541
+#  0.593  0.643  0.690  0.735  0.776  0.815  0.850  0.881  0.910  0.934
+#  0.955  0.972  0.985  0.994  0.999  1.000  0.997  0.990  0.979  0.964
+#  0.945  0.922  0.896  0.866  0.833  0.796  0.756  0.713  0.667  0.618
+#  0.567  0.514  0.458  0.401  0.342  0.282  0.220  0.158  0.095  0.032
+# -0.032 -0.095 -0.158 -0.220 -0.282 -0.342 -0.401 -0.458 -0.514 -0.567
+# -0.618 -0.667 -0.713 -0.756 -0.796 -0.833 -0.866 -0.896 -0.922 -0.945
+# -0.964 -0.979 -0.990 -0.997 -1.000 -0.999 -0.994 -0.985 -0.972 -0.955
+# -0.934 -0.910 -0.881 -0.850 -0.815 -0.776 -0.735 -0.690 -0.643 -0.593
+# -0.541 -0.486 -0.430 -0.372 -0.312 -0.251 -0.189 -0.127 -0.063  0.000
+#------------------------------------------------------------------------------
+#	RECEIVER PARAMETERS
+#	===================
+# 1. station location  (lat[deg], lon[deg], depth[km])
+#    Note: the epicentral distance should not exceed the max. distance used
+#          for generating the f-k spectra
+# 2. time reduction[s]
+# 3. order of bandpass filter(if <= 0, then no filter will be used), lower
+#    and upper cutoff frequences[Hz]
+# 4. selection of output format (1 = Down/Radial/Azimuthal, 2 = East/North/Up)
+# 5. output file of velocity seismograms
+# 6. number of datalines representing the layered receiver-site structure, and
+#    selection of surface condition (0 = free surface, 1 = without free surface,
+#    i.e., upper halfspace is replaced by medium of the 1. layer)
+# 7. ... layered structure model
+#------------------------------------------------------------------------------
+  30.0  40.0  3.0                                                 |dble(3)
+  300.0                                                          |dble
+  3   0.10  10.0                                                  |int,dble(2)
+  1                                                               |int
+  'seis1.dat'                                                     |char
+#------------------------------------------------------------------------------
+  9                                                               |int
+#------------------------------------------------------------------------------
+# no  depth[km]  vp[km/s]  vs[km/s] rho[g/cm^3]          qp        qs
+#------------------------------------------------------------------------------
+  1     0.000      1.500       0.010      1.000    10000.00     41.00
+  2     3.000      1.500       0.010      1.000    10000.00     41.00
+  3     3.000      5.400       3.121      2.600       92.00     41.00
+  4    10.000      5.400       3.121      2.600       92.00     41.00
+  5    10.000      6.160       3.561      2.600      576.00    256.00
+  6    25.000      6.160       3.561      2.600      576.00    256.00
+  7    25.000      6.630       3.832      2.900      576.00    256.00
+  8    45.000      6.630       3.832      2.900      576.00    256.00
+  9    45.000      8.040       4.470      3.320     1340.00    600.00
+#-----------------------END OF INPUT PARAMETERS--------------------------------
