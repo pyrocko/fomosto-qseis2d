@@ -1,0 +1,16 @@
+/Makefile.in
+/aclocal.m4
+/autom4te.cache
+/configure
+/install-sh
+/missing
+/src/r/Makefile.in
+/src/s/Makefile.in
+/Makefile
+/src/r/Makefile
+/src/s/Makefile
+*.o
+/config.log
+/config.status
+/src/r/fomosto_qseisR2014
+/src/s/fomosto_qseisS2014
