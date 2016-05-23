@@ -13,7 +13,7 @@ c
       double precision pi,suppress,ros,vps,vss,fcut
       double precision rot(3,3),sm(3,3),swap(3,3)
       double precision resolut(3)
-      character dataline*180
+      character dataline*1800
 c
       pi=4.d0*datan(1.d0)
 c

@@ -1,7 +1,7 @@
       subroutine getdata(unit,line)
       implicit none
       integer unit
-      character line*180,char*1
+      character line*1800,char*1
 c
       integer i
 c

@@ -4,7 +4,7 @@ c
       integer iwavelet,nwvl,iout
       double precision tau,tstart,flw,fup
       double precision wvl(nwvl)
-      character*80 outfile
+      character*800 outfile
 c
       include 'qsrglobal.h'
 c

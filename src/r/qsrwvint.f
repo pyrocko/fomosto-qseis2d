@@ -4,7 +4,7 @@
 c
       integer ibndp
       double precision mxx,myy,mzz,mxy,myz,mzx,flw,fup
-      character*80 greenfk
+      character*800 greenfk
 c
       include 'qsrglobal.h'
 c

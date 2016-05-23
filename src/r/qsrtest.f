@@ -9,7 +9,7 @@ c     greenfk = f-k spectra of incident waves
 c
       double precision lats,lons
       double precision mxx,myy,mzz,mxy,myz,mzx
-      character*80 greenfk
+      character*800 greenfk
 c
 c     iwavelet = selection of wavelet forms for source time function
 c     nwvl = number of time samples of user-defined source wavelet (<= 1024)
@@ -33,7 +33,7 @@ c     outfile = output file
 c
       integer iout,ibndp
       double precision latr,lonr,depr,tstart,flw,fup
-      character*80 outfile
+      character*800 outfile
 c
 c     nl = number of data lines representing the model
 c     dep = depth
@@ -49,8 +49,8 @@ c
 c     work space
 c
       integer i,j,runtime
-      character*80 inputfile
-      character*180 dataline
+      character*800 inputfile
+      character*1800 dataline
 c
       integer time
 c

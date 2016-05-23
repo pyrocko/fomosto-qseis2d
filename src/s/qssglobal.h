@@ -112,7 +112,7 @@ c
 c
 c     input and output data files
 c
-      character*80 inputfile
+      character*800 inputfile
       common /inputdata/ inputfile
-      character*80 greeninfo,greenfile
+      character*800 greeninfo,greenfile
       common /outdata/ greeninfo,greenfile
