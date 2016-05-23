@@ -1,8 +1,8 @@
-# QSEIS2D 2014 (packaged as Fomosto backend)
+# QSEIS2D (packaged as Fomosto backend)
  
 Code to calculate synthetic seismograms based on a layered viscoelastic half-space earth model. Allows to efficiently model multiple receiver side structures.
 
-QSEIS2D 2014 has been written by Rongjiang Wang.
+QSEIS2D has been written by Rongjiang Wang.
 
 Packaging has been done by Hannes Vasyura-Bathke and Sebastian Heimann.
 
