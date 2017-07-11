@@ -1,0 +1,25 @@
+
+language: c
+
+matrix:
+    include:
+        - os: linux
+        - os: osx
+          osx_image: xcode7.3
+          language: generic
+
+addons:
+    apt:
+        packages: [ gfortran ]
+
+before_install:
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc; fi
+
+install:
+    - autoreconf -i; ./configure; make
+
+script:
+    - echo "All done!"
+
+notifications:
+    email: false
