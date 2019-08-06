@@ -1,21 +1,38 @@
-# QSEIS2D (packaged as Fomosto backend)
-[![Build Status](https://travis-ci.org/pyrocko/fomosto-qseis2d.svg?branch=master)](https://travis-ci.org/pyrocko/fomosto-qseis2d)
- 
-Code to calculate synthetic seismograms based on a layered viscoelastic half-space earth model. Allows to efficiently model multiple receiver side structures.
+# Announcement: The fomosto-qseis2d repository is leaving GitHub
 
-QSEIS2D has been written by Rongjiang Wang.
+*Potsdam, 2019-08-05*
 
-Packaging has been done by Hannes Vasyura-Bathke and Sebastian Heimann.
+Since last week, [GitHub is restricting access to their services based on
+user nationality and residence](https://help.github.com/en/articles/github-and-trade-controls>) ([see
+also](https://techcrunch.com/2019/07/29/github-ban-sanctioned-countries)).
+Such restrictions are incompatible with scientific standards in
+international research communities like seismology.
 
-## References
+The fomosto-qseis2d software package is used by researchers worldwide. As researchers, we are obligated to retain open
+access to all. To achieve this, we are now migrating our code repositories
+away from GitHub to a new safe home. The new home of the fomosto-qseis2d repository
+is at [git.pyrocko.org](https://git.pyrocko.org/pyrocko/fomosto-qseis2d/), open now.
 
-Wang, R., (1999), A simple orthonormalization method for stable and efficient computation of Green's functions, Bulletin of the Seismological Society of America, 89(3), 733-741.
+To ensure a smooth
+transition, we will keep a read-only version of the fomosto-qseis2d repository
+at GitHub until 2019-10-01, when it will be deleted.
 
-## Compile and install
+To update the upstream url of a cloned fomosto-qseis2d repository, run
 
 ```
-autoreconf -i   # only if 'configure' script is missing
-./configure
-make
-sudo make install
+git remote set-url origin https://git.pyrocko.org/pyrocko/fomosto-qseis2d.git
 ```
+
+in the cloned directory.
+
+To obtain a fresh clone, run
+
+```
+git clone https://git.pyrocko.org/pyrocko/fomoto-qseis2d.git fomosto-qseis2d
+```
+
+Thanks to the worldwide seismology community for all the support and help.
+
+Best regards
+
+*The fomosto-qseis2d Developers*
